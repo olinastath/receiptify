@@ -79,6 +79,9 @@
 						delete link;
 					});
 				});
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				// error handler here
 			}
 		});
 	}
