@@ -39,9 +39,11 @@
 		const node = document.getElementById(type);
 		node.innerHTML = '';
 
-		let text = document.createElement('H3');
-		text.innerText = 'Hiding: ' + array.join(', ');
-		node.appendChild(text);
+		if (array.length > 0) {
+			let text = document.createElement('H3');
+			text.innerText = 'Hiding: ' + array.join(', ');
+			node.appendChild(text);
+		}
 	}
 
 	function populateAndDisplayNode(type, array) {
