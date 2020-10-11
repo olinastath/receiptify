@@ -1,6 +1,6 @@
 # Receiptify
 
-Web application inspired by https://www.instagram.com/albumreceipts/. Generates receipts that list out a user's top tracks in the past month, 6 months, and all time.
+Web application inspired by [@/albumreceipts on Instagram](https://www.instagram.com/albumreceipts/). Generates receipts that list out a user's top tracks in the past month, 6 months, and all time.
 
 This application was originally developed by [Michelle Liu](https://michellexliu.github.io/) but I tweaked it to add a filtering option to hide artists or albums. 
 
