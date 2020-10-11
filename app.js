@@ -11,11 +11,12 @@ const request = require('request'); // "Request" library
 const cors = require('cors');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
-const config = require('./config');
+const fs = require('fs');
+const config = fs.existsSync('config.js') ? require('./config') : process.env;
 
-var client_id = (config ? config : process.env).clientId; // Your client id
-var client_secret = (config ? config : process.env).clientSecret; // Your secret
-var redirect_uri = (config ? config : process.env).redirectUri; // Your redirect uri
+var client_id = config.clientId; // Your client id
+var client_secret = config.clientSecret; // Your secret
+var redirect_uri = config.redirectUri; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
