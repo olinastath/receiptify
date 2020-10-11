@@ -2,7 +2,9 @@
 
 Web application inspired by https://www.instagram.com/albumreceipts/. Generates receipts that list out a user's top tracks in the past month, 6 months, and all time.
 
-The application can be viewed at https://receiptify.herokuapp.com/.
+This application was originally developed by [Michelle Liu](https://michellexliu.github.io/) but I tweaked it to add a filtering option to hide artists or albums. 
+
+The original idea behind these changes was that people often listen to soundtracks or classical music while studying or working but those most played tracks don't represent the user's music taste at large. The application can be viewed at https://receiptify-too.herokuapp.com/.
 
 ## Running the App Locally
 
@@ -16,15 +18,22 @@ Once installed, clone the repository and install its dependencies running:
 
 You will need to register your app and get your own credentials from the Spotify for Developers Dashboard.
 
-To do so, go to [your Spotify for Developers Dashboard](https://beta.developer.spotify.com/dashboard) and create your application. In my own development process, I registered these Redirect URIs:
+To do so, go to [your Spotify for Developers Dashboard](https://beta.developer.spotify.com/dashboard) and create your application. You will also need to register redirect URIs for the Spotify OAuth to work. These vary based on your host. I have registered the following:
 
-- http://localhost:3000 (needed for the implicit grant flow)
 - http://localhost:3000/callback
+- https://receiptify-too.herokuapp.com/callback
 
-Once you have created your app, load the `clientId`, `redirectUri` and `clientSecret` into the `config.js` file.
+Once you have created your app, create a `config.js` file on the main directory and add the following structure: 
+module.exports = {
+	clientId: YOUR_CLIENT_ID,
+	clientSecret: YOUR_CLIENT_SECRET
+    redirectUri: YOUR_REDIRECT_URI,
+};
 
-In order to run the app, open the folder, and run its `app.js` file:
+This file is ignored by git as you shouldn't be sharing your client secret publicly. The application also can pick from environmental variables if you are hosting on a cloud platform such as Heroku.
 
-    $ node app.js
+In order to run the app, open the main directory, and run the start script:
+
+    $ npm start
 
 Then, open `http://localhost:3000` in a browser.
