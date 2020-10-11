@@ -84,7 +84,7 @@ app.get('/callback', function (req, res) {
 				grant_type: 'authorization_code'
 			},
 			headers: {
-				Authorization: 'Basic ' + new Buffer(client_id + ':' + client_secret).toString('base64')
+				Authorization: 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64')
 			},
 			json: true,
 		};
@@ -139,7 +139,7 @@ app.get('/refresh_token', function (req, res) {
 	var authOptions = {
 		url: 'https://accounts.spotify.com/api/token',
 		headers: {
-			Authorization: 'Basic ' + new Buffer(client_id + ':' + client_secret).toString('base64')
+			Authorization: 'Basic ' + Buffer.from(client_id + ':' + client_secre).toString('base64')
 		},
 		form: {
 			grant_type: 'refresh_token',
