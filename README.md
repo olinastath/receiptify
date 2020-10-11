@@ -28,8 +28,8 @@ Once you have created your app, create a `config.js` file on the main directory 
 ```javascript
 module.exports = {
 	clientId: YOUR_CLIENT_ID,
-	clientSecret: YOUR_CLIENT_SECRET
-    redirectUri: YOUR_REDIRECT_URI,
+	clientSecret: YOUR_CLIENT_SECRET,
+    redirectUri: YOUR_REDIRECT_URI
 };
 ```
 
