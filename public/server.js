@@ -35,7 +35,7 @@
 		return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
 	}
 
-	function toggleFilterDisplay(type, array) {
+	function toggleFilterDisplay(type, array, showWarning) {
 		const node = document.getElementById(type);
 		node.innerHTML = '';
 
@@ -43,6 +43,13 @@
 			let text = document.createElement('H3');
 			text.innerText = 'Hiding: ' + array.join(', ');
 			node.appendChild(text);
+		}
+
+		if (showWarning) {
+			let warning = document.createElement('H3');
+			warning.innerText = 'Looks like you hid most of your top songs. Try again with fewer filters.'
+			warning.className = 'warning';
+			node.appendChild(warning);
 		}
 	}
 
@@ -120,9 +127,7 @@
 	function retrieveTracks(timeRangeSlug, domNumber, domPeriod) {
 		// get the checked artists and albums and make sure to check against those
 		let skipAlbums = Array.from(document.querySelectorAll('#albums .hide-element input:checked')).map(ele => ele.value);
-		toggleFilterDisplay('albums', skipAlbums);
 		let skipArtists = Array.from(document.querySelectorAll('#artists .hide-element input:checked')).map(ele => ele.value);
-		toggleFilterDisplay('artists', skipArtists);
 
 		$.ajax({
 			url: `https://api.spotify.com/v1/me/top/tracks?limit=25&time_range=${timeRangeSlug}`,
@@ -172,6 +177,9 @@
 					period: domPeriod,
 					parsedSongs: data.parsedSongs
 				});
+
+				toggleFilterDisplay('albums', skipAlbums, data.parsedSongs < 10);
+				toggleFilterDisplay('artists', skipArtists, data.parsedSongs < 10);
 
 				document.getElementById('download').addEventListener('click', function () {
 					var offScreen = document.querySelector('.receiptContainer');
