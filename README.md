@@ -24,11 +24,14 @@ To do so, go to [your Spotify for Developers Dashboard](https://beta.developer.s
 - https://receiptify-too.herokuapp.com/callback
 
 Once you have created your app, create a `config.js` file on the main directory and add the following structure: 
+
+```javascript
 module.exports = {
 	clientId: YOUR_CLIENT_ID,
 	clientSecret: YOUR_CLIENT_SECRET
     redirectUri: YOUR_REDIRECT_URI,
 };
+```
 
 This file is ignored by git as you shouldn't be sharing your client secret publicly. The application also can pick from environmental variables if you are hosting on a cloud platform such as Heroku.
 
