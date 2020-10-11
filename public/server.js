@@ -47,7 +47,7 @@
 
 		if (showWarning) {
 			let warning = document.createElement('H3');
-			warning.innerText = 'Looks like you hid most of your top songs. Try again with fewer filters.'
+			warning.innerHTML = 'Looks like you hid most of your top songs. <br/> Try again with fewer filters.'
 			warning.className = 'warning';
 			node.appendChild(warning);
 		}
