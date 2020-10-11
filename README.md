@@ -25,7 +25,6 @@ Once you have created your app, load the `clientId`, `redirectUri` and `clientSe
 
 In order to run the app, open the folder, and run its `app.js` file:
 
-    $ cd authorization_code
     $ node app.js
 
 Then, open `http://localhost:3000` in a browser.
