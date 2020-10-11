@@ -72,7 +72,7 @@
 					{{#each tracks}}
 						<tr>
 							<td class='begin'>
-								0{{@index}}
+								{{parseIndex @index}}
 							</td>
 							<td class='name'>
 								{{this.name}} -
@@ -92,7 +92,7 @@
 							ITEM COUNT:
 						</td>
 						<td class='length'>
-							10
+							{{parsedSongs}}
 						</td>
 					</tr>
 					<tr class='total-counts-end'>
