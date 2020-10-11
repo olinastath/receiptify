@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap");
 
 h1 {
-	font-family: 'Poppins', sans-serif;
+	font-family: "Poppins", sans-serif;
 	font-weight: 600;
 	font-size: 4.5rem;
 	text-align: center;
@@ -11,23 +11,24 @@ h1 {
 h2 {
 	font-size: 2.5rem;
 	margin-top: 0px;
+	text-align: center;
 }
 p {
 	font-family: Helvetica, Geneva, Tahoma, sans-serif;
 }
 .logo {
-	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: 600;
 	font-size: 3.3rem;
 	text-align: center;
 	padding-top: 15px;
 }
 .info {
-	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	text-align: center;
 }
 .period {
-	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 1.5rem;
 	text-align: center;
 	padding-bottom: 15px;
@@ -49,26 +50,44 @@ p {
 	cursor: pointer;
 	border-radius: 10px;
 	color: white;
-	font-family: 'Poppins', Helvetica, Geneva, Tahoma, sans-serif;
+	font-family: "Poppins", Helvetica, Geneva, Tahoma, sans-serif;
 }
 .btn {
 	text-align: center;
 	text-decoration: none;
 	padding: 1vh 5vh;
-	background-color: #0056ff;
+	background-color: cadetblue;
 	font-size: 20px;
 	cursor: pointer;
 	border-radius: 10px;
 	color: white;
-	font-family: 'Poppins', Helvetica, Geneva, Tahoma, sans-serif;
+	font-family: "Poppins", Helvetica, Geneva, Tahoma, sans-serif;
 	margin: 0vh 1vh;
 	width: auto;
+}
+.hide-btn {
+	padding: 1vh 2vh;
 }
 .login-btn:hover {
 	text-decoration: none;
 	color: white;
 }
-#options {
+.hide-options-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 2vh 0 3vh;
+	width: 50vw;
+}
+#artists, #albums {
+	display: none;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+.hide-element label {
+	margin-left: 1vw;
+}
+#term-options {
 	margin: 0px auto;
 	display: flex;
 	flex-direction: row;
@@ -96,7 +115,7 @@ p {
 	margin: 25px auto;
 }
 .receiptContainer {
-	background-image: url('wrinkled-paper-texture-7.jpg');
+	background-image: url("wrinkled-paper-texture-7.jpg");
 	background-position: center;
 	width: 340px;
 	filter: brightness(110%);
@@ -111,7 +130,7 @@ p {
 p,
 table,
 .date {
-	font-family: 'Anonymous Pro', 'Courier New', Courier, monospace;
+	font-family: "Anonymous Pro", "Courier New", Courier, monospace;
 }
 table {
 	border: none;
@@ -160,7 +179,7 @@ td {
 	}
 }
 @media only screen and (max-width: 767px) {
-	#options {
+	#term-options, .hide-options-row {
 		flex-direction: column;
 	}
 	#loggedin,

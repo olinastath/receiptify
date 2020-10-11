@@ -23,7 +23,19 @@
 			<div id="loggedin">
 				<h1>Receiptify</h1>
 				<h2>Spotify Top Track Generator</h2>
-				<div id="options">
+				<div id="hide-options">
+					<div class="hide-options-row">
+						<h2>Hide:</h2>
+						<button class="hide-btn btn" id="artists_btn">Artists?</button>
+						<button class="hide-btn btn" id="albums_btn">Albums?</button>
+					</div>
+					<div class="hide-options-row">
+						<div id="artists"></div>
+						<div id="albums"></div>
+					</div>
+					
+				</div>
+				<div id="term-options">
 					<button class="btn" id="short_term">Last Month</button>
 					<button class="btn" id="medium_term">Last 6 Months</button>
 					<button class="btn" id="long_term">All Time</button>
