@@ -4,22 +4,22 @@
 	 * @return Object
 	 */
 
-	var displayName = "RECEIPTIFY";
+	var displayName = 'RECEIPTIFY';
 	var dateOptions = {
-		weekday: "long",
-		year: "numeric",
-		month: "long",
-		day: "numeric",
+		weekday: 'long',
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
 	};
 	var today = new Date();
 
-	var userProfileSource = document.getElementById("user-profile-template").innerHTML,
+	var userProfileSource = document.getElementById('user-profile-template').innerHTML,
 		userProfileTemplate = Handlebars.compile(userProfileSource),
-		userProfilePlaceholder = document.getElementById("receipt");
+		userProfilePlaceholder = document.getElementById('receipt');
 
-	Handlebars.registerHelper("parseIndex", function(value, options) {
+	Handlebars.registerHelper('parseIndex', function(value, options) {
 		if (value < 9) {
-			return "0" + (parseInt(value) + 1);
+			return '0' + (parseInt(value) + 1);
 		} else {
 			return parseInt(value) + 1;
 		}
@@ -42,41 +42,41 @@
 
 	function toggleFilterDisplay(type, array) {
 		const node = document.getElementById(type);
-		node.innerHTML = "";
+		node.innerHTML = '';
 
-		let text = document.createElement("H3");
-		text.innerText = "Hiding: " + array.join(", ");
+		let text = document.createElement('H3');
+		text.innerText = 'Hiding: ' + array.join(', ');
 		node.appendChild(text);
 	}
 
 	function populateAndDisplayNode(type, array) {
 		const node = document.getElementById(type);
-		node.innerHTML = "";
+		node.innerHTML = '';
 
 		for (let i = 0; i < array.length; i++) {
 			let displayName = array[i];
-			let value = array[i].split(" - ")[0].trim()
-			let albumName = value.split("(")[0].trim()
+			let value = array[i].split(' - ')[0].trim()
+			let albumName = value.split('(')[0].trim()
 
-			let divElement = document.createElement("DIV");
-			divElement.className = "hide-element";
+			let divElement = document.createElement('DIV');
+			divElement.className = 'hide-element';
 
-			let inputElement = document.createElement("INPUT");
-			inputElement.setAttribute("type", "checkbox");
-			inputElement.setAttribute("name", toCamelCase(albumName));
-			inputElement.setAttribute("id", toCamelCase(albumName));
-			inputElement.setAttribute("value", value);
+			let inputElement = document.createElement('INPUT');
+			inputElement.setAttribute('type', 'checkbox');
+			inputElement.setAttribute('name', toCamelCase(albumName));
+			inputElement.setAttribute('id', toCamelCase(albumName));
+			inputElement.setAttribute('value', value);
 			divElement.appendChild(inputElement);
 
-			let labelElement = document.createElement("LABEL");
-			labelElement.setAttribute("for", toCamelCase(albumName));
+			let labelElement = document.createElement('LABEL');
+			labelElement.setAttribute('for', toCamelCase(albumName));
 			labelElement.innerText = displayName;
 			divElement.appendChild(labelElement);
 			
 			node.appendChild(divElement);
 		}
 
-		const hideOptionsChildren = document.getElementsByClassName("hide-options-row")[1].children;
+		const hideOptionsChildren = document.getElementsByClassName('hide-options-row')[1].children;
 		for (let i = 0; i < hideOptionsChildren.length; i++) {
 			if (hideOptionsChildren[i].id !== type) {
 				hideOptionsChildren[i].style.display = 'none';
@@ -87,14 +87,14 @@
 	}
 
 	function loadInitialTracks() {
-		const timeRangeSlugs = ["short_term", "medium_term", "long_term"];
+		const timeRangeSlugs = ['short_term', 'medium_term', 'long_term'];
 		const artists = [];
 		const albums = [];
 		timeRangeSlugs.forEach(timeRangeSlug => {
 			$.ajax({
 				url: `https://api.spotify.com/v1/me/top/tracks?limit=25&time_range=${timeRangeSlug}`,
 				headers: {
-					Authorization: "Bearer " + access_token,
+					Authorization: 'Bearer ' + access_token,
 				},
 				success: function (response) {
 					response.items.forEach(track => {
@@ -116,28 +116,28 @@
 			});
 		});
 
-		document.getElementById("artists_btn").addEventListener("click", () => populateAndDisplayNode("artists", artists));
-		document.getElementById("albums_btn").addEventListener("click", () => populateAndDisplayNode("albums", albums));
+		document.getElementById('artists_btn').addEventListener('click', () => populateAndDisplayNode('artists', artists));
+		document.getElementById('albums_btn').addEventListener('click', () => populateAndDisplayNode('albums', albums));
 	}
 
 	function retrieveTracks(timeRangeSlug, domNumber, domPeriod) {
 		// get the checked artists and albums and make sure to check against those
-		let skipAlbums = Array.from(document.querySelectorAll("#albums .hide-element input:checked")).map(ele => ele.value);
-		toggleFilterDisplay("albums", skipAlbums);
-		let skipArtists = Array.from(document.querySelectorAll("#artists .hide-element input:checked")).map(ele => ele.value);
-		toggleFilterDisplay("artists", skipArtists);
+		let skipAlbums = Array.from(document.querySelectorAll('#albums .hide-element input:checked')).map(ele => ele.value);
+		toggleFilterDisplay('albums', skipAlbums);
+		let skipArtists = Array.from(document.querySelectorAll('#artists .hide-element input:checked')).map(ele => ele.value);
+		toggleFilterDisplay('artists', skipArtists);
 
 		$.ajax({
 			url: `https://api.spotify.com/v1/me/top/tracks?limit=25&time_range=${timeRangeSlug}`,
 			headers: {
-				Authorization: "Bearer " + access_token,
+				Authorization: 'Bearer ' + access_token,
 			},
 			success: function (response) {
 				var data = {
 					trackList: [],
 					total: 0,
 					parsedSongs: 0,
-					date: today.toLocaleDateString("en-US", dateOptions).toUpperCase(),
+					date: today.toLocaleDateString('en-US', dateOptions).toUpperCase(),
 					json: true,
 				};
 				for (var i = 0; i < response.items.length; i++) {
@@ -147,7 +147,7 @@
 						for (var j = 0; j < currentTrack.artists.length; j++) {
 							currentTrack.artists[j].name = currentTrack.artists[j].name.trim().toUpperCase();
 							if (j != currentTrack.artists.length - 1) {
-								currentTrack.artists[j].name = currentTrack.artists[j].name + ", ";
+								currentTrack.artists[j].name = currentTrack.artists[j].name + ', ';
 							}
 						}
 
@@ -155,7 +155,7 @@
 						data.total += currentTrack.duration_ms;
 						let minutes = Math.floor(currentTrack.duration_ms / 60000);
 						let seconds = ( (currentTrack.duration_ms % 60000) / 1000).toFixed(0);
-						currentTrack.duration_ms = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+						currentTrack.duration_ms = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 						data.parsedSongs++;
 						data.trackList.push(currentTrack);
 						if (data.parsedSongs === 10) {
@@ -165,7 +165,7 @@
 				}
 				minutes = Math.floor(data.total / 60000);
 				seconds = ((data.total % 60000) / 1000).toFixed(0);
-				data.total = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+				data.total = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 				userProfilePlaceholder.innerHTML = userProfileTemplate({
 					tracks: data.trackList,
 					total: data.total,
@@ -176,15 +176,15 @@
 					parsedSongs: data.parsedSongs
 				});
 
-				document.getElementById("download").addEventListener("click", function () {
-					var offScreen = document.querySelector(".receiptContainer");
+				document.getElementById('download').addEventListener('click', function () {
+					var offScreen = document.querySelector('.receiptContainer');
 
 					window.scrollTo(0, 0);
 					// Use clone with htm2canvas and delete clone
 					html2canvas(offScreen).then((canvas) => {
 						var dataURL = canvas.toDataURL();
 						console.log(dataURL);
-						var link = document.createElement("a");
+						var link = document.createElement('a');
 						link.download = `${timeRangeSlug}_receiptify.png`;
 						link.href = dataURL;
 						document.body.appendChild(link);
@@ -207,29 +207,29 @@
 		error = params.error;
 
 	if (error) {
-		alert("There was an error during the authentication");
+		alert('There was an error during the authentication');
 	} else {
 		if (access_token) {
 			$.ajax({
-				url: "https://api.spotify.com/v1/me",
+				url: 'https://api.spotify.com/v1/me',
 				headers: {
-					Authorization: "Bearer " + access_token,
+					Authorization: 'Bearer ' + access_token,
 				},
 				success: function (response) {
 					displayName = response.display_name.toUpperCase();
-					$("#login").hide();
-					$("#loggedin").show();
+					$('#login').hide();
+					$('#loggedin').show();
 				},
 			});
 			loadInitialTracks();
 		} else {
 			// render initial screen
-			$("#login").show();
-			$("#loggedin").hide();
+			$('#login').show();
+			$('#loggedin').hide();
 		}
 
-		document.getElementById("short_term").addEventListener("click", () => retrieveTracks("short_term", 1, "LAST MONTH"), false);
-		document.getElementById("medium_term").addEventListener("click", () => retrieveTracks("medium_term", 2, "LAST 6 MONTHS"), false);
-		document.getElementById("long_term").addEventListener("click", () => retrieveTracks("long_term", 3, "ALL TIME"), false);
+		document.getElementById('short_term').addEventListener('click', () => retrieveTracks('short_term', 1, 'LAST MONTH'), false);
+		document.getElementById('medium_term').addEventListener('click', () => retrieveTracks('medium_term', 2, 'LAST 6 MONTHS'), false);
+		document.getElementById('long_term').addEventListener('click', () => retrieveTracks('long_term', 3, 'ALL TIME'), false);
 	}
 })();
