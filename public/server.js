@@ -114,8 +114,8 @@
 			$('#loggedin').hide();
 		}
 
-		document.getElementById('short_term').addEventListener('click', retrieveTracks('short_term', 1, 'LAST MONTH'), false);
-		document.getElementById('medium_term').addEventListener('click', retrieveTracks('medium_term', 2, 'LAST 6 MONTHS'), false);
-		document.getElementById('long_term').addEventListener('click', retrieveTracks('long_term', 3, 'ALL TIME'), false);
+		document.getElementById('short_term').addEventListener('click', () => retrieveTracks('short_term', 1, 'LAST MONTH'), false);
+		document.getElementById('medium_term').addEventListener('click', () => retrieveTracks('medium_term', 2, 'LAST 6 MONTHS'), false);
+		document.getElementById('long_term').addEventListener('click', () => retrieveTracks('long_term', 3, 'ALL TIME'), false);
 	}
 })();
