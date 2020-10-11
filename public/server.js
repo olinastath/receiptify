@@ -5,12 +5,7 @@
 	 */
 
 	var displayName = 'RECEIPTIFY';
-	var dateOptions = {
-		weekday: 'long',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	};
+	var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 	var today = new Date();
 
 	var userProfileSource = document.getElementById('user-profile-template').innerHTML,
@@ -94,7 +89,7 @@
 			$.ajax({
 				url: `https://api.spotify.com/v1/me/top/tracks?limit=25&time_range=${timeRangeSlug}`,
 				headers: {
-					Authorization: 'Bearer ' + access_token,
+					Authorization: 'Bearer ' + access_token
 				},
 				success: function (response) {
 					response.items.forEach(track => {
@@ -112,7 +107,7 @@
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
 					// error handler here
-				},
+				}
 			});
 		});
 
@@ -130,7 +125,7 @@
 		$.ajax({
 			url: `https://api.spotify.com/v1/me/top/tracks?limit=25&time_range=${timeRangeSlug}`,
 			headers: {
-				Authorization: 'Bearer ' + access_token,
+				Authorization: 'Bearer ' + access_token
 			},
 			success: function (response) {
 				var data = {
@@ -138,7 +133,7 @@
 					total: 0,
 					parsedSongs: 0,
 					date: today.toLocaleDateString('en-US', dateOptions).toUpperCase(),
-					json: true,
+					json: true
 				};
 				for (var i = 0; i < response.items.length; i++) {
 					let currentTrack = response.items[i];
@@ -196,7 +191,7 @@
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				// error handler here
-			},
+			}
 		});
 	}
 
@@ -213,13 +208,13 @@
 			$.ajax({
 				url: 'https://api.spotify.com/v1/me',
 				headers: {
-					Authorization: 'Bearer ' + access_token,
+					Authorization: 'Bearer ' + access_token
 				},
 				success: function (response) {
 					displayName = response.display_name.toUpperCase();
 					$('#login').hide();
 					$('#loggedin').show();
-				},
+				}
 			});
 			loadInitialTracks();
 		} else {
